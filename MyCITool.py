@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-import sys
+#import sys
 import os
 import docker
-from shutil import copyfile
-from time import sleep
+#from shutil import move
+
 
 path_to_docker_default = "https://github.com/Observer99/MyCITool.git#master:dockerWebApp"
 image_name_default = "michaelh/my-hello"
@@ -91,17 +91,15 @@ print('Creating Watcher_' + container_name + ' crontab file and putting it to /e
 try:
     local_path = os.path.dirname(os.path.abspath(__file__))
     watcher_filename = '{}{}'.format('Watcher_', container_name)
-    watcher_filepath = '{}/{}{}'.format(local_path, 'Watcher_', container_name)
+    watcher_filepath = '{}/{}{}'.format('/etc/cron.d', 'Watcher_', container_name)
     logfile = '{}/{}{}{}'.format(local_path, 'Watcher_', container_name, '.log')
     file = open(watcher_filepath, 'w')
-    file.write('{}{}{}{}{}{}{}{}{}'.format('*/1 * * * * root ', local_path, '/Watcher.sh ', container_name, ' >> ', local_path, '/Watcher_', container_name, '.log 2>&1\n'))
+    file.write('{}{}{}{} {}{}{}{}{}{}'.format('*/1 * * * * root ', local_path, '/Watcher.sh ', container_name, host_port, ' >> ', local_path, '/Watcher_', container_name, '.log 2>&1\n'))
     file.close()
-    copyfile(watcher_filepath, '{}{}'.format('/etc/cron.d/', watcher_filename))
 except Exception as e:
     print('ERROR! Failed create Watcher!')
     print(e)
     exit(1)
 else:
-    print('SUCCESS! The Watcher was created successfully!')
-    print('You can monitor the conteiner status in ' + logfile + '/n')
+    print('SUCCESS! The Watcher was created successfully!\nThe Watcher samples every minute and store the resultes it the log below:\n', logfile, '\n')
 
