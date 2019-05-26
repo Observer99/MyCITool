@@ -1,9 +1,29 @@
 #!/usr/bin/env python3
 
-#import sys
+import argparse
+
+parser=argparse.ArgumentParser(
+description="""Build docker image, run docker container and create monitoring as a crontab task.
+
+This script allows the user to build docker image from local folder or directly from Git and then run it as a container.
+In addtition, it creates crontab file /etc/cron.d/Watcher_<container_name> for monitoring of the container.
+The crontab file launches Watcher.sh script every minute with two parameters: <container_name> and <host_port>.
+
+No need to run MyCITool.py script with parameters, just start it without parameters using sudo and follow the instruction.
+The script will ask user to input all parameters interactively.
+You can skip all parameters by pressing Enter. In this case the script will use default parameters.
+
+Parameters:
+    path_to_docker (str): Path to Dockerfile, can be path to Git or local folder (default is "https://github.com/Observer99/MyCITool.git#master:dockerWebApp")
+    image_name (str): Name of the image to be built (default is "michaelh/my-hello")
+    container_name (str): Name of the container to be created and run (default is "my-hello-1")
+    container_port (int): Exposed TCP port of the container (default is 8080)
+    host_port (int): TCP port of the host that mapped to container_port for connection from outside (default is 4001)
+""", formatter_class=argparse.RawTextHelpFormatter)
+args=parser.parse_args()
+
 import os
 import docker
-#from shutil import move
 
 
 path_to_docker_default = "https://github.com/Observer99/MyCITool.git#master:dockerWebApp"
@@ -15,7 +35,7 @@ host_port_default = 4001
 client = docker.from_env()
 
 #Get string parameters from user or set default values:
-path_to_docker = input('{} {} \n'.format('Please insert path to Github project that contains docker application or press Enter for default value\n\
+path_to_docker = input('{} {} \n'.format('Please insert path to Github project or local folder that contains Dockerfile or press Enter for default value\n\
 DEFAULT value is', path_to_docker_default)) or path_to_docker_default
 print('===>\n', 'path_to_docker set to: ', path_to_docker, '\n<===\n')
 
