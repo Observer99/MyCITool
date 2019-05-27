@@ -44,7 +44,7 @@ CPU_USAGE=$((100 - CPU_USAGE))
 if [ $CPU_USAGE -lt 90 ]
 then
    echo "INFO: The CPU usage is $CPU_USAGE%"
-elif [ $CPU_USAGE -lt 95 ]
+elif [ $CPU_USAGE -lt 96 ]
 then
    echo "WARNING: CPU usage is $CPU_USAGE%"
 else
@@ -58,7 +58,7 @@ MEMORY_USAGE=$(((TOTAL_MEMORY - AVAILABLE_MEMORY) *100 / TOTAL_MEMORY))
 if [ $MEMORY_USAGE -lt 90 ]
 then
    echo "INFO: The Memory usage is $MEMORY_USAGE%"
-elif [ $MEMORY_USAGE -lt 95 ]
+elif [ $MEMORY_USAGE -lt 96 ]
 then
    echo "WARNING: Memory usage is $MEMORY_USAGE%"
 else
