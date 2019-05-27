@@ -7,7 +7,8 @@ description="""Build docker image, run docker container and create monitoring as
 
 This script allows the user to build docker image from local folder or directly from Git and then run it as a container.
 In addtition, it creates crontab file /etc/cron.d/Watcher_<container_name> for monitoring of the container.
-The crontab file launches Watcher.sh script every minute with two parameters: <container_name> and <host_port>.
+The crontab file launches Watcher.sh script every minute with two parameters: <container_name> and <host_port>
+and redirects stdout and stderr to the log file ./Watcher_<container_name>.log.
 
 No need to run MyCITool.py script with parameters, just start it without parameters using sudo and follow the instruction.
 The script will ask user to input all parameters interactively.
