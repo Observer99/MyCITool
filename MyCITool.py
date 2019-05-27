@@ -81,7 +81,7 @@ print('===>\n', 'host_port set to: ', host_port, '\n<===\n')
 #Build docker image:
 print('Building docker image...\nIt should take only few seconds, so please be patient...')
 try:
-    client.images.build(path = path_to_docker, tag = image_name)
+    client.images.build(path=path_to_docker, tag=image_name, rm=True)
 except Exception as e:
     print('ERROR! The image was not built successfully!')
     print(e)
@@ -92,7 +92,7 @@ else:
 #Run container:
 print('Running docker conteiner...\nIt should take about one second, so please be patient even more...')
 try:
-    container = client.containers.run(image_name, ports = {container_port: host_port}, name = container_name, detach=True)
+    container = client.containers.run(image_name, ports={container_port: host_port}, name=container_name, detach=True)
 except Exception as e:
     print('ERROR! The container was not run successfully!')
     print(e)
@@ -121,5 +121,5 @@ except Exception as e:
     print(e)
     exit(1)
 else:
-    print('SUCCESS! The Watcher was created successfully!\nThe Watcher samples every minute and store the resultes it the log below:\n', logfile, '\n')
+    print('SUCCESS! The Watcher was created successfully!\nThe Watcher samples every minute and stores the resultes it the following log file:\n', logfile, '\n')
 
