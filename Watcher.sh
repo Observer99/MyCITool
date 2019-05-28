@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#This script requires two parameters - <container_name> and <host_port>
+
 echo "===================================================="
 echo `date`
 echo "===================================================="
