@@ -33,11 +33,11 @@ Watcher.sh performs the following checks:
    - SUCCESS - successfull action (start or restart of container).
 
 ### dockerWebApp
-The dockerWebApp is a simple "Hello World" Python web application with Dockerfile.
+The dockerWebApp is a simple "Hello World" CherryPy Python web application with Dockerfile.
 
 ### Requirements
 The following components should be available in order to run MyCITool.py:
-   - Python 3 with docker module installed (pip install docker)
+   - Python 3 with docker module installed (pip3 install docker)
    - Docker deamon running
    - Git client
    - sar command (part of sysstat package). Sar command is used by Watcher.sh
