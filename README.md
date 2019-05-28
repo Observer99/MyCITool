@@ -1,5 +1,8 @@
 ## This project contains MyCITool.py, Watcher.sh and dockerWebApp with Dockerfile and simple "Hello World" Python web application.
 
+## Usage
+Clone this project to your host. Actually you need only MyCITool.py and Watcher.sh available in your working directory. The dockerWebApp will be downloaded and built automatically by MyCITool.py script.
+
 ## MyCITool.py
 This script allows the user to build docker image from local folder or directly from Git and then run it as a container.
 In addtition, it creates crontab file /etc/cron.d/Watcher_<container_name> for monitoring of the container.
