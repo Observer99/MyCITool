@@ -17,7 +17,7 @@ else
    if [ $? ]
    then
       echo "SUCCESS: The container $1 was started successfully"
-	  sleep 5
+          sleep 5
    else
       echo "ERROR: The start of container $1 failed!"
    fi
@@ -40,9 +40,14 @@ else
 fi
 
 #Check CPU usage:
-CPU_USAGE=$(sar 1 3 | grep Average | awk '{ print $8 }')
-CPU_USAGE=${CPU_USAGE%.*}
-CPU_USAGE=$((100 - CPU_USAGE))
+#CPU_USAGE=$(sar 1 3 | grep Average | awk '{ print $8 }')
+
+CPU_USAGE=$(docker stats $1 --no-stream --format "{{.CPUPerc}}")
+#Remove '%'
+CPU_USAGE=$(echo $CPU_USAGE | sed s/%//)
+#Convert to integer:
+CPU_USAGE=$(printf %.0f "$CPU_USAGE")
+
 if [ $CPU_USAGE -lt 90 ]
 then
    echo "INFO: The CPU usage is $CPU_USAGE%"
@@ -54,9 +59,16 @@ else
 fi
 
 #Check Memory usage:
-TOTAL_MEMORY=$(free -m | awk 'NR==2{printf "%s\n", $2 }')
-AVAILABLE_MEMORY=$(free -m | awk 'NR==2{printf "%s\n", $7 }')
-MEMORY_USAGE=$(((TOTAL_MEMORY - AVAILABLE_MEMORY) *100 / TOTAL_MEMORY))
+#TOTAL_MEMORY=$(free -m | awk 'NR==2{printf "%s\n", $2 }')
+#AVAILABLE_MEMORY=$(free -m | awk 'NR==2{printf "%s\n", $7 }')
+#MEMORY_USAGE=$(((TOTAL_MEMORY - AVAILABLE_MEMORY) *100 / TOTAL_MEMORY))
+
+MEMORY_USAGE=$(docker stats $1 --no-stream --format "{{.MemPerc}}")
+#Remove '%'
+MEMORY_USAGE=$(echo $MEMORY_USAGE | sed s/%//)
+#Convert to integer:
+MEMORY_USAGE=$(printf %.0f "$MEMORY_USAGE")
+
 if [ $MEMORY_USAGE -lt 90 ]
 then
    echo "INFO: The Memory usage is $MEMORY_USAGE%"
