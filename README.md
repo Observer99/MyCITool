@@ -33,4 +33,5 @@ The following components should be available in order to run MyCITool.py:
    - Python 3 with docker module installed (pip install docker)
    - Docker deamon running
    - Git client
+
 This solution was tested on CentOS 7 only, but should work on other distributions as well.
