@@ -40,5 +40,6 @@ The following components should be available in order to run MyCITool.py:
    - Python 3 with docker module installed (pip install docker)
    - Docker deamon running
    - Git client
+   - sar command (part of sysstat package). Sar command is used by Watcher.sh
 
-This solution was tested on CentOS 7 only, but should work on other distributions as well.
+This solution was tested on CentOS 7 and Ubuntu 18.04, but should work on other distributions as well.
