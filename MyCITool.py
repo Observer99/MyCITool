@@ -91,7 +91,7 @@ else:
     print('SUCCESS! The docker image was built successfully!\n')
 
 #Run container:
-print('Running docker conteiner...\nIt should take about one second, so please be patient even more...')
+print('Running docker container...\nIt should take about one second, so please be patient even more...')
 try:
     container = client.containers.run(image_name, ports={container_port: host_port}, name=container_name, detach=True)
 except Exception as e:
