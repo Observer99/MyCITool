@@ -1,4 +1,5 @@
-### This project contains MyCITool.py, Watcher.sh and dockerWebApp with Dockerfile and simple "Hello World" Python web application.
+### MyCITool.py builds docker image from Git (default is dockerWebApp), runs container and configures Watcher.sh
+
 
 ### Usage
 Clone this project to your host. Actually you need only MyCITool.py and Watcher.sh available in your working directory. The dockerWebApp will be downloaded and built automatically by MyCITool.py script.
@@ -30,7 +31,10 @@ Watcher.sh performs the following checks:
    - WARNING - non critical issues (high CPU or Memory).
    - ERROR - critical issues (container is not running, web application is not responding, very high CPU or Memory, failure to start or restart container).
    - SUCCESS - successfull action (start or restart of container).
-    
+
+### dockerWebApp
+The dockerWebApp is a simple "Hello World" Python web application with Dockerfile.
+
 ### Requirements
 The following components should be available in order to run MyCITool.py:
    - Python 3 with docker module installed (pip install docker)
