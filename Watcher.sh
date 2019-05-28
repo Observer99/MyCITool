@@ -39,9 +39,10 @@ else
    fi
 fi
 
-#Check CPU usage:
+#Check host CPU usage (not in use anymore):
 #CPU_USAGE=$(sar 1 3 | grep Average | awk '{ print $8 }')
 
+#Check container CPU usage:
 CPU_USAGE=$(docker stats $1 --no-stream --format "{{.CPUPerc}}")
 #Remove '%'
 CPU_USAGE=$(echo $CPU_USAGE | sed s/%//)
@@ -58,11 +59,12 @@ else
    echo "ERROR: CPU usage is $CPU_USAGE%"
 fi
 
-#Check Memory usage:
+#Check host Memory usage (not in use anymore):
 #TOTAL_MEMORY=$(free -m | awk 'NR==2{printf "%s\n", $2 }')
 #AVAILABLE_MEMORY=$(free -m | awk 'NR==2{printf "%s\n", $7 }')
 #MEMORY_USAGE=$(((TOTAL_MEMORY - AVAILABLE_MEMORY) *100 / TOTAL_MEMORY))
 
+#Check container Memory usage:
 MEMORY_USAGE=$(docker stats $1 --no-stream --format "{{.MemPerc}}")
 #Remove '%'
 MEMORY_USAGE=$(echo $MEMORY_USAGE | sed s/%//)
