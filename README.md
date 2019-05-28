@@ -22,7 +22,7 @@ You can skip all parameters by pressing Enter. In this case the script will use 
 
 ### Watcher.sh
 Watcher.sh performs the following checks:
-   - Check container status and start it if it not running.
+   - Check container status and start if it is not running.
    - Check dockerWebApp API and restart container in case of failure.
    - Check CPU usage (<90% - INFO, 90%-95% - WARNING, >95% - ERROR).
    - Check Memory usage (<90% - INFO, 90%-95% - WARNING, >95% - ERROR).
