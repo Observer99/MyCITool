@@ -24,8 +24,8 @@ You can skip all parameters by pressing Enter. In this case the script will use 
 Watcher.sh performs the following checks:
    - Check container status and start if it is not running.
    - Check dockerWebApp API and restart container in case of failure.
-   - Check CPU usage (<90% - INFO, 90%-95% - WARNING, >95% - ERROR).
-   - Check Memory usage (<90% - INFO, 90%-95% - WARNING, >95% - ERROR).
+   - Check container CPU usage (<90% - INFO, 90%-95% - WARNING, >95% - ERROR).
+   - Check container Memory usage (<90% - INFO, 90%-95% - WARNING, >95% - ERROR).
 ##### Message levels
    - INFO - everything is OK.
    - WARNING - non critical issues (high CPU or Memory).
@@ -40,6 +40,5 @@ The following components should be available in order to run MyCITool.py:
    - Python 3 with docker module installed (pip3 install docker)
    - Docker deamon running
    - Git client
-   - sar command (part of sysstat package). Sar command is used by Watcher.sh
 
 This solution was tested on CentOS 7 and Ubuntu 18.04, but should work on other distributions as well.
